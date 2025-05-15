@@ -8263,6 +8263,7 @@ struct llm_build_context {
                     attn = ggml_soft_max(ctx0, QK);
                 } else {
                     // For preprocessing with multiple tokens
+                    // Always using non-causal attention mask for ModernBERT (both global and sliding window)
                     // Check if dimensions are compatible for broadcasting before adding
                     if (ggml_can_repeat(KQ_mask_l, QK)) {
                         // Dimensions are compatible - apply mask normally
